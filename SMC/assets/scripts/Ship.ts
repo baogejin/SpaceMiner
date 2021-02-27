@@ -15,6 +15,7 @@ export class Ship {
     public SetPos(iX: number, iY: number): void {
         this.m_iX = iX;
         this.m_iY = iY;
+        this.node.active = true;
         this.node.setPosition(Game.Map.GetGridPosition(iX, iY));
     }
 

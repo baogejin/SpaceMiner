@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+enum MSGID
+{
+    REQ_LOGIN = 1;//请求登录
+    RSP_LOGIN = 2;
+    REQ_GAME_CHAT = 3;//游戏内聊天
+    INF_GAME_CHAT = 4;
+    REQ_MATCH = 5;
+    RSP_MATCH = 6;
+    INF_MATCH_SUCCESS = 7;
+    REQ_START_GAME = 8;//进入游戏场景后，请求开始游戏
+    INF_GAME_START = 9;//通知游戏开始，初始资源分布
+    INF_PLAYER_POSITION = 10;//通知玩家出生地
+    INF_PLAYER_TURN = 11;//通知玩家回合
+    REQ_SHIP_UPGRADE = 12;//请求飞船升级
+    INF_SHIP_UPGRADE = 13;//通知飞船升级
+    REQ_SHIP_OPT = 14;
+    INF_SHIP_OPT = 15;
+    INF_GAME_END = 16;
+    REQ_END_TURN = 17;
+}
+
+enum RESULTID
+{
+    SUCCESS = 0;
+}
+
+message ReqLogin
+{
+}
+
+message RspLogin
+{
+    RESULTID result = 1;    
+    int32 uin = 2;
+}
+
+message ReqGameChat
+{
+    string msg = 1;
+}
+
+message InfGameChat
+{
+    int32 uin = 1;
+    string msg = 2;
+}
+
+message ReqMatch
+{
+
+}
+
+message RspMatch
+{
+    RESULTID result = 1;
+}
+
+message InfMatchSuccess
+{
+    int32 uin = 1;
+}
+
+message ReqStartGame
+{
+
+}
+
+message InfGameStart
+{
+    repeated int32 arrRes = 1;
+}
+
+message PlayerPosition
+{
+    int32 uin = 1;
+    int32 posX = 2;
+    int32 posY = 3;
+}
+
+message InfPlayerPosition
+{
+    repeated PlayerPosition positions = 1;
+}
+
+message InfPlayerTurn
+{
+    int32 uin = 1;
+}
+
+message ReqShipUpgrade
+{
+    int32 type = 1;
+}
+
+message InfShipUpgrade
+{
+    int32 type = 1;
+    int32 uin = 2;
+}
+
+message ReqShipOpt
+{
+    int32 type = 1;
+    int32 posX = 2;
+    int32 posY = 3;
+}
+
+message InfShipOpt
+{
+    int32 uin = 1;
+    int32 type = 2;
+    int32 posX = 3;
+    int32 posY = 4;
+    bool result = 5;
+}
+
+message InfGameEnd
+{
+    int32 uin = 1;
+}
+
+message ReqEndTurn
+{
+
+}

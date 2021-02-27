@@ -6,6 +6,8 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
 import { Game } from "./Game";
+import { NetMgr } from "./NetMgr";
+import { ServerHander } from "./ServerHandler";
 
 const { ccclass, property } = cc._decorator;
 
@@ -42,6 +44,8 @@ export default class NewClass extends cc.Component {
         Game.Map.Init(this.mapGridPrefab, this.shipPrefab, this.mapNode);
         Game.Player.Init(this.playerInfoPrefab, this.playerNode);
         Game.Chat.Init(this.chatNode, this.chatRenderPrefab);
+
+        ServerHander.Get().ReqStartGame();
     }
 
     // update (dt) {}
