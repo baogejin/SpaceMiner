@@ -35,4 +35,8 @@ export class RoomMgr {
     public GetRoom(uin: number): Room | undefined {
         return this.m_mapRoom.get(uin);
     }
+
+    public ClearRoomByUin(uin: number): void {
+        this.m_mapRoom.delete(uin);
+    }
 }

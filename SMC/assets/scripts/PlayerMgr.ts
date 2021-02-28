@@ -1,3 +1,4 @@
+import { Game } from "./Game";
 import { Global } from "./Glabal";
 import { PlayerInfo } from "./PlayerInfo";
 
@@ -24,5 +25,35 @@ export class PlayerMgr {
         } else {
             this.m_stMyInfo.HideBtns();
         }
+    }
+
+    public AddMine(uin: number, mine: number): void {
+        if (uin == Global.UIN) {
+            this.m_stMyInfo.AddMine(mine);
+        } else if (uin == Global.ENEMY) {
+            this.m_stEnemyInfo.AddMine(mine);
+        }
+    }
+
+    public ReduceMine(uin: number, mine: number): void {
+        if (uin == Global.UIN) {
+            this.m_stMyInfo.ReduceMine(mine);
+        } else if (uin == Global.ENEMY) {
+            this.m_stEnemyInfo.ReduceMine(mine);
+        }
+    }
+
+    public GetMyInfo(): PlayerInfo {
+        return this.m_stMyInfo;
+    }
+
+    public MyAttack(): void {
+        this.m_stEnemyInfo.ReduceLife(this.m_stMyInfo.Attack);
+        Game.Chat.AddMsg(`我的飞船发起了攻击，成功命中，对敌方飞船造成了${this.m_stMyInfo.Attack}点伤害`);
+    }
+
+    public EnemyAttack(): void {
+        this.m_stMyInfo.ReduceLife(this.m_stEnemyInfo.Attack);
+        Game.Chat.AddMsg(`敌方飞船发起了攻击，成功命中，对我的飞船造成了${this.m_stEnemyInfo.Attack}点伤害`);
     }
 }

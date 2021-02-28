@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "ChatRender",
+    "_name": "Bullet",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -36,13 +36,13 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 750,
-      "height": 50
+      "width": 0,
+      "height": 0
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 1
+      "y": 0.5
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -75,7 +75,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "label",
+    "_name": "bullet",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -93,34 +93,34 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 730,
-      "height": 37.8
+      "width": 624,
+      "height": 545
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 1
+      "y": 0.5
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        6.431,
+        2.144,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        0.1,
+        0.1,
         1
       ]
     },
@@ -138,7 +138,7 @@
     "_id": ""
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -152,33 +152,32 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "asdasdadadsadas",
-    "_N$string": "asdasdadadsadas",
-    "_fontSize": 30,
-    "_lineHeight": 30,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_batchAsBitmap": false,
-    "_styleFlags": 0,
-    "_underlineHeight": 0,
-    "_N$horizontalAlign": 0,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
-    "_N$cacheMode": 0,
+    "_spriteFrame": {
+      "__uuid__": "8d78523a-f9d4-4e17-afe2-c27d614d5244"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_atlas": null,
     "_id": ""
   },
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 2
+      "__id__": 1
     },
     "asset": {
-      "__uuid__": "27756ebb-3d33-44b0-9b96-e858fadd4dd4"
+      "__uuid__": "241a870c-381e-4084-adc8-67fdaea1aba8"
     },
-    "fileId": "13hbpTrNNNIp1ghSU7aZYS",
+    "fileId": "aarlNPt5dERKUM8v5PXT5d",
     "sync": false
   },
   {
@@ -187,7 +186,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "8cbb6d5a-a281-485d-afca-c9b23c00165d"
+      "__uuid__": "241a870c-381e-4084-adc8-67fdaea1aba8"
     },
     "fileId": "",
     "sync": false

@@ -1,4 +1,5 @@
 import { Game } from "./Game";
+import { Global } from "./Glabal";
 
 export class MapGrid {
     private m_stSkin: cc.Node;
@@ -23,7 +24,11 @@ export class MapGrid {
     }
 
     private OnTouchEnd(): void {
-        Game.Map.MoveTest(this.m_iX, this.m_iY);
+        if (Global.CUR_TURN != Global.UIN) {
+            //不是自己回合
+            return;
+        }
+        Game.Map.OptGrid(this.m_iX, this.m_iY);
     }
 
     public SetMine(iMine: number): void {
@@ -32,5 +37,17 @@ export class MapGrid {
             this.m_stLab.node.active = true;
             this.m_stLab.string = this.m_iMine.toString();
         }
+    }
+
+    //采矿
+    public GetMine(): number {
+        let num = this.m_iMine;
+        this.m_iMine = 0;
+        this.m_stLab.node.active = false;
+        return num;
+    }
+
+    public get Mine(): number {
+        return this.m_iMine;
     }
 }

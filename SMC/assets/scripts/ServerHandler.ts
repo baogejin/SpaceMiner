@@ -1,5 +1,5 @@
 import { NetMgr } from "./NetMgr";
-import { MSGID, ReqEndTurn, ReqGameChat, ReqLogin, ReqMatch, ReqStartGame } from "./proto/msg";
+import { MSGID, ReqEndTurn, ReqGameChat, ReqLogin, ReqMatch, ReqShipOpt, ReqShipUpgrade, ReqStartGame } from "./proto/msg";
 
 export class ServerHander {
     private static m_pInstance: ServerHander;
@@ -46,5 +46,29 @@ export class ServerHander {
         let req: ReqEndTurn = ReqEndTurn.create();
         let buf: Uint8Array = ReqEndTurn.encode(req).finish();
         NetMgr.Get().Send(MSGID.REQ_END_TURN, buf);
+    }
+
+    /**
+     * 
+     * @param type 1攻击力 2攻击距离 3采矿距离
+     */
+    public ReqShipUpgrade(type: number): void {
+        let req: ReqShipUpgrade = ReqShipUpgrade.create();
+        req.type = type;
+        let buf: Uint8Array = ReqShipUpgrade.encode(req).finish();
+        NetMgr.Get().Send(MSGID.REQ_SHIP_UPGRADE, buf);
+    }
+
+    /**
+     * 
+     * @param type 1攻击 2采矿 3移动
+     */
+    public ReqShipOpt(type: number, iX: number, iY: number): void {
+        let req: ReqShipOpt = ReqShipOpt.create();
+        req.type = type;
+        req.posX = iX;
+        req.posY = iY;
+        let buf: Uint8Array = ReqShipOpt.encode(req).finish();
+        NetMgr.Get().Send(MSGID.REQ_SHIP_OPT, buf);
     }
 }

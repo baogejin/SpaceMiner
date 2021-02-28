@@ -35,16 +35,26 @@ export default class NewClass extends cc.Component {
     @property(cc.Prefab)
     chatRenderPrefab: cc.Prefab = null;
 
+    @property(cc.Node)
+    alertNode: cc.Node = null;
+
+    @property(cc.Node)
+    selectNode: cc.Node = null;
+
+    @property(cc.Prefab)
+    bulletPrefab: cc.Prefab = null;
+
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
 
     start() {
         Game.Init();
-        Game.Map.Init(this.mapGridPrefab, this.shipPrefab, this.mapNode);
+        Game.Map.Init(this.mapGridPrefab, this.shipPrefab, this.mapNode, this.bulletPrefab);
         Game.Player.Init(this.playerInfoPrefab, this.playerNode);
         Game.Chat.Init(this.chatNode, this.chatRenderPrefab);
-
+        Game.Alert.Init(this.alertNode);
+        Game.Select.Init(this.selectNode);
         ServerHander.Get().ReqStartGame();
     }
 

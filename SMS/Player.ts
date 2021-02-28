@@ -2,7 +2,7 @@ import { WebSocket, acceptWebSocket, isWebSocketCloseEvent, isWebSocketPingEvent
 import { MsgHeader } from "./MsgHeader.ts";
 import { PlayerMgr } from "./PlayerMgr.ts";
 import { RspMatch } from "./proto/msg.ts";
-import { MSGID, RESULTID, RspLogin, ReqGameChat } from "./proto/msg.ts";
+import { MSGID, RESULTID, RspLogin, ReqGameChat, ReqShipUpgrade, ReqShipOpt } from "./proto/msg.ts";
 import { Room } from "./Room.ts";
 import { RoomMgr } from "./RoomMgr.ts";
 export class Player {
@@ -24,6 +24,8 @@ export class Player {
         this.m_mapHandle.set(MSGID.REQ_MATCH, this.OnReqMatch.bind(this));
         this.m_mapHandle.set(MSGID.REQ_START_GAME, this.OnReqStartGame.bind(this));
         this.m_mapHandle.set(MSGID.REQ_END_TURN, this.OnReqEndTurn.bind(this));
+        this.m_mapHandle.set(MSGID.REQ_SHIP_UPGRADE, this.OnReqShipUpgrade.bind(this));
+        this.m_mapHandle.set(MSGID.REQ_SHIP_OPT, this.OnReqShipOpt.bind(this));
     }
 
     private async Listen(): Promise<void> {
@@ -38,6 +40,7 @@ export class Player {
                     // close.
                     const { code, reason } = ev;
                     console.log("ws:Close", code, reason);
+                    PlayerMgr.Get().DelPlayer(this);
                 } else {
                     //其他类型的不处理
                 }
@@ -122,6 +125,22 @@ export class Player {
         let room = RoomMgr.Get().GetRoom(this.m_iUin);
         if (room) {
             room.EndTurn(this.m_iUin);
+        }
+    }
+
+    private OnReqShipUpgrade(body: Uint8Array): void {
+        let req: ReqShipUpgrade = ReqShipUpgrade.fromBytes(body);
+        let room = RoomMgr.Get().GetRoom(this.m_iUin);
+        if (room) {
+            room.ShipUpgrade(this.m_iUin, req.type);
+        }
+    }
+
+    private OnReqShipOpt(body: Uint8Array): void {
+        let req: ReqShipOpt = ReqShipOpt.fromBytes(body);
+        let room = RoomMgr.Get().GetRoom(this.m_iUin);
+        if (room) {
+            room.ShipOpt(this.m_iUin, req.type, req.posX, req.posY);
         }
     }
 }

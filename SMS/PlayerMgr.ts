@@ -1,6 +1,7 @@
 import { Player } from "./Player.ts";
 import { WebSocket, acceptWebSocket, isWebSocketCloseEvent, isWebSocketPingEvent } from "./deps.ts";
 import { InfGameChat, MSGID } from "./proto/msg.ts";
+import { RoomMgr } from "./RoomMgr.ts";
 export class PlayerMgr {
     private static m_pInstance: PlayerMgr;
     public static Get(): PlayerMgr {
@@ -47,6 +48,7 @@ export class PlayerMgr {
     public DelPlayerByUin(uin: number): void {
         if (uin > 0) {
             this.m_mapPlayer.delete(uin);
+            RoomMgr.Get().ClearRoomByUin(uin);
         }
     }
 
